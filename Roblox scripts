@@ -1,0 +1,37 @@
+local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Button 1: Set transparency to 0.5
+local button1 = Instance.new("TextButton")
+button1.Size = UDim2.new(0, 200, 0, 50)
+button1.Position = UDim2.new(0.5, -100, 0.4, 0)
+button1.Text = "Set Transparency 0.5"
+button1.Parent = screenGui
+
+-- Button 2: Reset transparency to 0
+local button2 = Instance.new("TextButton")
+button2.Size = UDim2.new(0, 200, 0, 50)
+button2.Position = UDim2.new(0.5, -100, 0.55, 0)
+button2.Text = "Reset Transparency"
+button2.Parent = screenGui
+
+-- Function to set transparency
+local function setTransparency(value)
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.Transparency = value
+        end
+    end
+end
+
+-- Button connections
+button1.MouseButton1Click:Connect(function()
+    setTransparency(0.5)
+end)
+
+button2.MouseButton1Click:Connect(function()
+    setTransparency(0)
+end)
